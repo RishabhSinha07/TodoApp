@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './models/globals.dart';
 
 void main() {
   runApp(MyApp());
@@ -61,7 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
               TabBarView(
                 children: [
                   new Container(
-                    color: Colors.grey,
+                    color: darkGreyColor,
                   ),
                   new Container(
                     color: Colors.orange,
@@ -82,8 +83,26 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[Text("Intray"), Container()],
-                  ))
+                    children: <Widget>[
+                      Text("Intray", style: intraTitleStyle),
+                      Container()
+                    ],
+                  )),
+              Container(
+                height: 85,
+                width: 85,
+                margin: EdgeInsets.only(
+                    top: 110,
+                    left: MediaQuery.of(context).size.width * 0.5 - 85 * 0.5),
+                child: FloatingActionButton(
+                  child: Icon(
+                    Icons.add,
+                    size: 50,
+                  ),
+                  backgroundColor: redColor,
+                  onPressed: () {},
+                ),
+              )
             ]),
             appBar: AppBar(
               elevation: 0,
@@ -99,11 +118,11 @@ class _MyHomePageState extends State<MyHomePage> {
                     icon: new Icon(Icons.perm_identity),
                   ),
                 ],
-                labelColor: Colors.yellow,
+                labelColor: darkGreyColor,
                 unselectedLabelColor: Colors.blue,
                 indicatorSize: TabBarIndicatorSize.label,
                 indicatorPadding: EdgeInsets.all(5.0),
-                indicatorColor: Colors.red,
+                indicatorColor: Colors.transparent,
               ),
               backgroundColor: Colors.white,
             ),
