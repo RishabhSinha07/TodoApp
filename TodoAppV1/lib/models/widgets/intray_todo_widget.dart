@@ -8,7 +8,7 @@ class IntrayTodo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 10, left: 15, right: 15),
+      margin: EdgeInsets.only(bottom: 15, left: 15, right: 15),
       padding: EdgeInsets.all(10),
       height: 100,
       decoration: BoxDecoration(
@@ -23,11 +23,7 @@ class IntrayTodo extends StatelessWidget {
       ),
       child: Row(
         children: <Widget>[
-          Radio(
-            groupValue: null,
-            onChanged: (Null value) {},
-            value: null,
-          ),
+          Radio(),
           Column(
             children: <Widget>[
               Text(

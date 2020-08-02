@@ -1,3 +1,4 @@
+import 'package:TodoAppV1/models/classes/task.dart';
 import 'package:TodoAppV1/models/globals.dart';
 import 'package:TodoAppV1/models/widgets/intray_todo_widget.dart';
 import 'package:flutter/material.dart';
@@ -41,7 +42,8 @@ class _IntrayPageState extends State<IntrayPage> {
 
   List<Widget> getList() {
     for (int i = 0; i <= 20; i++) {
-      _list.add(IntrayTodo(title: "Hello"));
+      Task temp = Task("My first todo" + i.toString(), false, i.toString());
+      _list.add(IntrayTodo(title: temp.title));
     }
     return _list;
   }
