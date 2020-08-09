@@ -10,35 +10,40 @@ db = SQLAlchemy()
 
 class User(db.Model):
     __tablename__ = 'users'
-    __tablename_args__ = tuple(db.UniqueConstraints('id', 'userName'))
 
-    id = db.Column(db.string(), primary_key=True, unique=True)
-    api_key = db.Column(db.string(), primary_key=True, unique=True)
-    username = db.Column(db.string(), primary_key=True)
-    first_name = db.Column(db.string())
-    last_name = db.Column(db.string())
-    password = db.Column(db.string())
-    emailadress = db.Column(db.string())
+    id = db.Column(db.Integer(), primary_key=True)
+    api_key = db.Column(db.String(), unique=True)
+    username = db.Column(db.String())
+    firstname = db.Column(db.String())
+    lastname = db.Column(db.String())
+    password = db.Column(db.String())
+    emailadress = db.Column(db.String())
 
-    def __init__(self, id, api_key, username, first_name, last_name, password, emailadress):
-        self.id = id
-        self.api_key = api_key
-        self.username = username
-        self.first_name = first_name
-        self.last_name = last_name
-        self.password = password
+    def __init__(self, firstname, lastname, emailadress, password, username):
+        self.firstname = firstname
+        self.lastname = lastname
         self.emailadress = emailadress
+        self.password = password
+        self.username = username
 
     def __repr__(self):
         return '<id {}>'.format(self.id)
 
     def serialize(self):
         return{
-            'id': self.id,
-            'api_key': self.api_key,
             'username': self.username,
-            'first_name': self.first_name,
-            'last_name': self.last_name,
+            'firstname': self.firstname,
+            'lastname': self.lastname,
             'password': self.password,
             'emailadress': self.emailadress
         }
+
+
+# class UserSchema(ma.Schema):
+#     id = fields.Integer()
+#     api_key = fields.String()
+#     username = fields.String()
+#     first_name = fields.String()
+#     last_name = fields.String()
+#     password = fields.String(required=True)
+#     emailadress = fields.String(required=True)
