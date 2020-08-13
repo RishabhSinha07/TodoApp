@@ -19,12 +19,13 @@ class User(db.Model):
     password = db.Column(db.String())
     emailadress = db.Column(db.String())
 
-    def __init__(self, firstname, lastname, emailadress, password, username):
+    def __init__(self, firstname, lastname, emailadress, password, username, api_key):
         self.firstname = firstname
         self.lastname = lastname
         self.emailadress = emailadress
         self.password = password
         self.username = username
+        self.api_key = api_key
 
     def __repr__(self):
         return '<id {}>'.format(self.id)
@@ -35,7 +36,8 @@ class User(db.Model):
             'firstname': self.firstname,
             'lastname': self.lastname,
             'password': self.password,
-            'emailadress': self.emailadress
+            'emailadress': self.emailadress,
+            'api_key': self.api_key
         }
 
 
