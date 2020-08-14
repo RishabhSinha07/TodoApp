@@ -2,7 +2,6 @@ import 'package:TodoAppV1/UI/Intray/intray_page.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import './models/globals.dart';
-import 'models/authentication/login.dart';
 import 'models/authentication/login_page.dart';
 
 void main() {
