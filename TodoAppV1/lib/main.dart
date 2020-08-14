@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import './models/globals.dart';
 import 'models/authentication/login.dart';
+import 'models/authentication/login_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -45,9 +46,10 @@ Future getUser() async {
   var api_key = prefs.getString('api_token');
   print(api_key);
   runApp(MaterialApp(
-      home: api_key == null
-          ? LoginWithRestfulApi()
-          : MyHomePage(title: 'Todo App')));
+      //home: api_key == null
+      //  ? LoginWithRestfulApi()
+      //: MyHomePage(title: 'Todo App')));
+      home: LoginPage()));
 }
 
 class MyHomePage extends StatefulWidget {

@@ -26,8 +26,9 @@ class Register(Resource):
         return {"Status": "Sucess", "user_found": False, "api_key": None}, 200
 
     def post(self):
-
-        json_data = request.get_json(force=True)
+        print("here")
+        json_data = request.headers
+        print(json_data)
 
         if not json_data:
             return {'message': 'No input data provided'}, 400
@@ -62,7 +63,7 @@ class Register(Resource):
 
         # result = User.serialize(user)
 
-        return {"status": 'success', 'user_created': user.serialize()}, 201
+        return {"status": 'success', 'user_created': user.serialize()["api_key"]}, 201
 
     def generate_key(self):
         return ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(20))
