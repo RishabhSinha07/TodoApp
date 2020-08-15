@@ -43,73 +43,120 @@ class _LoginPage extends State<LoginPage> {
       body: Column(
         children: <Widget>[
           Container(
-            padding: EdgeInsets.only(left: 50),
+            padding: EdgeInsets.only(left: 20),
             height: 200,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(50),
-                    bottomRight: Radius.circular(50)),
-                color: Colors.white),
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Text("Login", style: intraTitleStyle),
+                  Text("Welcome!",
+                      style: TextStyle(
+                          color: redColor,
+                          fontSize: 60,
+                          fontWeight: FontWeight.bold)),
                 ]),
           ),
           Container(
-              margin: EdgeInsets.only(top: 20, left: 10, right: 10),
+              margin: EdgeInsets.only(top: 20, left: 10, right: 20),
               padding: EdgeInsets.only(left: 10),
-              height: 230,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                  color: redColor),
               child: Column(children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextField(
-                    controller: _emailController,
-                    decoration: InputDecoration(
-                      focusedBorder: InputBorder.none,
-                      contentPadding: const EdgeInsets.symmetric(
-                          horizontal: 0, vertical: 20),
-                      hintText: 'Email',
+                Container(
+                  height: 50,
+                  decoration: BoxDecoration(
+                      shape: BoxShape.rectangle,
+                      color: Colors.white60,
+                      borderRadius: BorderRadius.all(Radius.circular(5))),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextField(
+                      controller: _emailController,
+                      decoration: InputDecoration(
+                          border: InputBorder.none,
+                          contentPadding: const EdgeInsets.symmetric(
+                              horizontal: 0, vertical: 11.5),
+                          hintText: 'Email'),
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: TextField(
-                    controller: _passwordController,
-                    decoration: InputDecoration(
-                      focusedBorder: InputBorder.none,
-                      contentPadding: const EdgeInsets.symmetric(
-                          horizontal: 0, vertical: 20),
-                      hintText: 'Password',
+                Container(
+                  margin: EdgeInsets.only(top: 30),
+                  height: 50,
+                  decoration: BoxDecoration(
+                      shape: BoxShape.rectangle,
+                      color: Colors.white60,
+                      borderRadius: BorderRadius.all(Radius.circular(5))),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextField(
+                      controller: _passwordController,
+                      decoration: InputDecoration(
+                          border: InputBorder.none,
+                          contentPadding: const EdgeInsets.symmetric(
+                              horizontal: 0, vertical: 11.5),
+                          hintText: 'Password'),
                     ),
                   ),
                 ),
-                RaisedButton(
-                  child: Text("Login"),
-                  color: redColor,
-                  onPressed: () async {
-                    setState(() => _isLoading = true);
-                    var res = await _loginUser(
-                        _emailController.text, _passwordController.text);
-                    setState(() => _isLoading = false);
+                Container(
+                  margin: EdgeInsets.only(top: 30),
+                  child: SizedBox(
+                    width: 130,
+                    height: 50,
+                    child: RaisedButton(
+                      child: Text(
+                        "Login",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15),
+                      ),
+                      color: redColor,
+                      onPressed: () async {
+                        setState(() => _isLoading = true);
+                        var res = await _loginUser(
+                            _emailController.text, _passwordController.text);
+                        setState(() => _isLoading = false);
 
-                    var user = res;
-                    if (user != null) {
-                      Navigator.of(context).push(MaterialPageRoute<Null>(
-                          builder: (BuildContext context) {
-                        return MyHomePage(title: 'Todo App');
-                      }));
-                    } else
-                      Navigator.of(context).push(MaterialPageRoute<Null>(
-                          builder: (BuildContext context) {
-                        return SignUp();
-                      }));
-                  },
-                )
+                        var user = res;
+                        if (user != null) {
+                          Navigator.of(context).push(MaterialPageRoute<Null>(
+                              builder: (BuildContext context) {
+                            return MyHomePage(title: 'Todo App');
+                          }));
+                        } else
+                          Navigator.of(context).push(MaterialPageRoute<Null>(
+                              builder: (BuildContext context) {
+                            return SignUp();
+                          }));
+                      },
+                    ),
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(top: 100),
+                  child: Text("Don't have an account?",
+                      style: TextStyle(color: Colors.white, fontSize: 15)),
+                ),
+                Container(
+                  margin: EdgeInsets.only(top: 10),
+                  child: SizedBox(
+                    width: 130,
+                    height: 50,
+                    child: RaisedButton(
+                        child: Text("SignUp",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15)),
+                        color: redColor,
+                        onPressed: () async {
+                          setState(() => _isLoading = true);
+                          Navigator.of(context).push(MaterialPageRoute<Null>(
+                              builder: (BuildContext context) {
+                            return SignUp();
+                          }));
+                        }),
+                  ),
+                ),
               ]))
         ],
       ),
