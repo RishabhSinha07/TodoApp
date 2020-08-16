@@ -6,6 +6,7 @@ import 'package:TodoAppV1/models/authentication/signup_page.dart';
 import 'package:TodoAppV1/models/globals.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../main.dart';
 
@@ -25,12 +26,19 @@ class _LoginPage extends State<LoginPage> {
 
   bool _isLoading = false;
 
+  addApikeyToSF(final String apiKey) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('api_key', apiKey);
+  }
+
   Future<dynamic> _loginUser(String emailadress, String password) async {
     //var client = new http.Client();
 
     final response = await http.get("http://10.0.2.2:5000/api/Register",
         headers: {"emailadress": emailadress, "password": password});
-    print(LoadData.fromJson(json.decode(response.body)).api_key);
+    var api_key = LoadData.fromJson(json.decode(response.body)).api_key;
+    addApikeyToSF(api_key);
+    print(api_key);
 
     return LoadData.fromJson(json.decode(response.body)).api_key;
   }
