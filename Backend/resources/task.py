@@ -8,11 +8,13 @@ class task(Resource):
         header_data = request.headers
         api_key = header_data.get("api_key")
         task = Task.query.all()
+        print(task)
         temp = []
-        for val in temp:
-            if val["api_key"] == api_key and val["status"] != "done":
-                temp.append(val["task"])
-        return {"message": "Task for {}".format(api_key), "task": task}
+        for i in range(len(task)):
+            dummy = task[i].serialize()
+            if dummy["api_key"] == api_key:
+                temp.append(dummy["task"])
+        return {"message": "Task for {}".format(api_key), "task": temp}
 
     def post(self):
         json_data = request.headers

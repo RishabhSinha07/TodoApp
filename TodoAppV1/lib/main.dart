@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import './models/globals.dart';
 import 'UI/Intray/logout_page.dart';
 import 'models/authentication/login_page.dart';
+import 'package:http/http.dart' as http;
 
 void main() {
   runApp(MyApp());
@@ -59,7 +60,19 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  bool _isLoading = false;
   TextEditingController _task = TextEditingController();
+
+  Future<dynamic> _updateTable(String task) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    //var client = new http.Client();
+
+    final response = await http.post("http://10.0.2.2:5000/api/task",
+        headers: {"api_key": prefs.getString('api_key'), "task": task});
+
+    return response;
+  }
+
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
@@ -167,7 +180,25 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     fontSize: 15),
                                               ),
                                               color: redColor,
-                                              onPressed: () {}))
+                                              onPressed: () async {
+                                                setState(
+                                                    () => _isLoading = true);
+                                                var res = await _updateTable(
+                                                    _task.text);
+                                                setState(
+                                                    () => _isLoading = false);
+
+                                                var user = res;
+                                                if (user != null) {
+                                                  Navigator.of(context).push(
+                                                      MaterialPageRoute<Null>(
+                                                          builder: (BuildContext
+                                                              context) {
+                                                    return MyHomePage(
+                                                        title: 'Todo App');
+                                                  }));
+                                                }
+                                              }))
                                     ],
                                   )));
                         });
