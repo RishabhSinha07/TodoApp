@@ -41,11 +41,25 @@ class User(db.Model):
         }
 
 
-# class UserSchema(ma.Schema):
-#     id = fields.Integer()
-#     api_key = fields.String()
-#     username = fields.String()
-#     first_name = fields.String()
-#     last_name = fields.String()
-#     password = fields.String(required=True)
-#     emailadress = fields.String(required=True)
+class Task(db.Model):
+    __tablename__ = 'tasks'
+
+    id = db.Column(db.Integer(), primary_key=True)
+    api_key = db.Column(db.String(), unique=True)
+    task = db.Column(db.String())
+    status = db.Column(db.String())
+
+    def __init__(self, api_key, task, status):
+        self.api_key = api_key
+        self.task = task
+        self.status = status
+
+    def __repr__(self):
+        return '<id {}>'.format(self.id)
+
+    def serialize(self):
+        return{
+            'api_key': self.api_key,
+            'task': self.task,
+            'status': self.status
+        }
