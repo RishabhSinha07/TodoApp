@@ -6,6 +6,7 @@ import 'package:TodoAppV1/models/authentication/login_page.dart';
 import 'package:TodoAppV1/models/globals.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../main.dart';
 
@@ -17,6 +18,11 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUp extends State<SignUp> {
+  addApikeyToSF(final String apiKey) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('api_key', apiKey);
+  }
+
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   TextEditingController _emailController = TextEditingController();
@@ -41,8 +47,8 @@ class _SignUp extends State<SignUp> {
       "firstname": firstname,
       "lastname": lastname
     });
-    print(LoadData.fromJson(json.decode(response.body)).user_created);
-
+    var apiKey = LoadData.fromJson(json.decode(response.body)).user_created;
+    addApikeyToSF(apiKey);
     return LoadData.fromJson(json.decode(response.body)).user_created;
   }
 

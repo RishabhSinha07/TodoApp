@@ -2,6 +2,7 @@ import 'package:TodoAppV1/UI/Intray/intray_page.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import './models/globals.dart';
+import 'UI/Intray/logout_page.dart';
 import 'models/authentication/login_page.dart';
 
 void main() {
@@ -42,13 +43,10 @@ class MyApp extends StatelessWidget {
 Future getUser() async {
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences prefs = await SharedPreferences.getInstance();
-  var api_key = prefs.getString('api_token');
+  var api_key = prefs.getString('api_key');
   print(api_key);
   runApp(MaterialApp(
-      //home: api_key == null
-      //  ? LoginWithRestfulApi()
-      //: MyHomePage(title: 'Todo App')));
-      home: LoginPage()));
+      home: api_key == null ? LoginPage() : MyHomePage(title: 'Todo App')));
 }
 
 class MyHomePage extends StatefulWidget {
@@ -61,6 +59,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  TextEditingController _task = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
@@ -72,9 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
               TabBarView(
                 children: [
                   IntrayPage(),
-                  new Container(
-                    color: Colors.orange,
-                  ),
+                  LogoutPage(),
                   new Container(
                     color: Colors.lightGreen,
                   ),
@@ -108,7 +105,73 @@ class _MyHomePageState extends State<MyHomePage> {
                     size: 50,
                   ),
                   backgroundColor: redColor,
-                  onPressed: () {},
+                  onPressed: () {
+                    showDialog(
+                        context: context,
+                        builder: (context) {
+                          return Dialog(
+                              insetPadding: EdgeInsets.only(
+                                  top: 120, left: 10, right: 10),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5)),
+                              elevation: 16,
+                              child: Container(
+                                  color: Color(0xFFC7A1A1),
+                                  height: 250,
+                                  child: Column(
+                                    children: <Widget>[
+                                      Text(
+                                        "New Task",
+                                        style: TextStyle(
+                                            color: darkGreyColor,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 20),
+                                      ),
+                                      Container(
+                                        height: 130,
+                                        margin: EdgeInsets.only(
+                                            top: 35, left: 20, right: 20),
+                                        decoration: BoxDecoration(
+                                            shape: BoxShape.rectangle,
+                                            color: Color(0xFFD3D3D3),
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(5))),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: TextField(
+                                            style:
+                                                TextStyle(color: darkGreyColor),
+                                            keyboardType:
+                                                TextInputType.multiline,
+                                            maxLines: null,
+                                            expands: false,
+                                            textAlignVertical:
+                                                TextAlignVertical.center,
+                                            textAlign: TextAlign.center,
+                                            controller: _task,
+                                            decoration: InputDecoration(
+                                              border: InputBorder.none,
+                                              hintText: 'Tell me the new task!',
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      Container(
+                                          margin: EdgeInsets.only(top: 10),
+                                          child: RaisedButton(
+                                              child: Text(
+                                                "Add",
+                                                style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 15),
+                                              ),
+                                              color: redColor,
+                                              onPressed: () {}))
+                                    ],
+                                  )));
+                        });
+                  },
                 ),
               )
             ]),
