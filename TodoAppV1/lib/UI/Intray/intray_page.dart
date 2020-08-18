@@ -112,8 +112,8 @@ class _IntrayPageState extends State<IntrayPage> {
   List<Widget> getList(data) {
     _list = [];
     for (int i = 0; i < data.length; i++) {
-      Task temp = Task(data[i], false, i.toString());
-      _list.add(IntrayTodo(title: temp.title));
+      Task temp = Task(data[i]['task'], data[i]['status'], i.toString());
+      _list.add(IntrayTodo(title: temp.title, status: temp.status));
     }
     return _list;
   }
@@ -123,7 +123,7 @@ class _IntrayPageState extends State<IntrayPage> {
 
     final response = await http.get("http://10.0.2.2:5000/api/task",
         headers: {"api_key": prefs.getString('api_key')});
-
+    print(LoadData.fromJson(json.decode(response.body)).data);
     return LoadData.fromJson(json.decode(response.body)).data;
   }
 }

@@ -14,9 +14,3 @@ TextStyle darkTodoTitleStyle = new TextStyle(
     fontWeight: FontWeight.bold,
     color: darkGreyColor,
     fontSize: 30);
-
-TextStyle lightTodoTitleStyle = new TextStyle(
-    fontFamily: 'Avenir',
-    fontWeight: FontWeight.bold,
-    color: Color(0xFFB5E742),
-    fontSize: 30);

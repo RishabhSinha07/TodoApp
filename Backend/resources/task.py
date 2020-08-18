@@ -13,7 +13,7 @@ class task(Resource):
         for i in range(len(task)):
             dummy = task[i].serialize()
             if dummy["api_key"] == api_key:
-                temp.append(dummy["task"])
+                temp.append({'task': dummy["task"], 'status': dummy["status"]})
         return {"message": "Task for {}".format(api_key), "task": temp}
 
     def post(self):

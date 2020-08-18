@@ -67,8 +67,11 @@ class _MyHomePageState extends State<MyHomePage> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     //var client = new http.Client();
 
-    final response = await http.post("http://10.0.2.2:5000/api/task",
-        headers: {"api_key": prefs.getString('api_key'), "task": task});
+    final response = await http.post("http://10.0.2.2:5000/api/task", headers: {
+      "api_key": prefs.getString('api_key'),
+      "task": task,
+      "status": "not_done"
+    });
 
     return response;
   }
