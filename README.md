@@ -9,5 +9,5 @@
 
 ## Final layout for the App:
 <p align="center">
-  <img src="https://raw.githubusercontent.com/RishabhSinha07/TodoApp/master/Page%20preview/Intray.png" width="85%" title="Page Models" alt="Example of pages1">
+  <img src="https://raw.githubusercontent.com/RishabhSinha07/TodoApp/master/Page%20preview/Intray.png" width="40%" height="40%" title="Page Models" alt="Example of pages1">
 </p>
