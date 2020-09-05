@@ -9,7 +9,8 @@
 
 ## Final layout for the App:
 <p align="center">
-  <img src="https://raw.githubusercontent.com/RishabhSinha07/TodoApp/master/Page%20preview/Intray.png" width="40%" height="40%" title="Intray">,
-  <img src="https://raw.githubusercontent.com/RishabhSinha07/TodoApp/master/Page%20preview/Login.png" width="40%" height="40%" title="Login">,
-  <img src="https://raw.githubusercontent.com/RishabhSinha07/TodoApp/master/Page%20preview/Logout.png" width="40%" height="40%" title="Logout">
+  <img src="https://raw.githubusercontent.com/RishabhSinha07/TodoApp/master/Page%20preview/Intray.png" width="30%" height="30%" title="Intray">,
+  <img src="https://raw.githubusercontent.com/RishabhSinha07/TodoApp/master/Page%20preview/Login.png" width="30%" height="30%" title="Login">,
+  <img src="https://raw.githubusercontent.com/RishabhSinha07/TodoApp/master/Page%20preview/Logout.png" width="30%" height="30%" title="Logout">,
+  <img src="https://raw.githubusercontent.com/RishabhSinha07/TodoApp/master/Page%20preview/Signup.png " width="30%" height="30%" title="Logout">
 </p>
