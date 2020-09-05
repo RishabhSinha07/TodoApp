@@ -15,3 +15,9 @@
   <img src="https://raw.githubusercontent.com/RishabhSinha07/TodoApp/master/Page%20preview/Signup.png " width="30%" height="30%" title="Logout">
   <img src="https://github.com/RishabhSinha07/TodoApp/blob/master/Page%20preview/TodoApp.gif" width="30%" height="30%" title="Logout">
 </p>
+
+> Backend
+##
+- RestApi with Flask
+- PostgreSql
+
