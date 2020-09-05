@@ -18,6 +18,6 @@
 
 > Backend
 ##
-- RestApi with Flask
-- PostgreSql
+- RestApi with Flask (Python)
+- PostgreSql for Database
 
