@@ -26,7 +26,6 @@ class Register(Resource):
         return {"Status": "Sucess", "user_found": False, "api_key": None}, 200
 
     def post(self):
-        print("here")
         json_data = request.headers
         print(json_data)
 

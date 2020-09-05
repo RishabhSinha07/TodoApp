@@ -26,5 +26,20 @@ class task(Resource):
         )
         db.session.add(task)
         db.session.commit()
+        return {"status": 'success', 'task_added': True}, 200
+
+    def delete(self):
+        json_data = request.headers
+        print(json_data)
+        task = Task(
+            api_key=json_data.get("api_key"),
+            task=json_data.get("task"),
+            status=json_data.get("status")
+        )
+        Task.query.filter_by(task=json_data['title']).delete()
+        # db.session.filter_by(task=json_data.get("title")).delete()
+        #  db.session.delete(task)
+        db.session.commit()
+        print("done")
 
         return {"status": 'success', 'task_added': True}, 200

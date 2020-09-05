@@ -81,17 +81,11 @@ class _MyHomePageState extends State<MyHomePage> {
     return new MaterialApp(
       home: SafeArea(
         child: DefaultTabController(
-          length: 3,
+          length: 2,
           child: new Scaffold(
             body: Stack(children: <Widget>[
               TabBarView(
-                children: [
-                  IntrayPage(),
-                  LogoutPage(),
-                  new Container(
-                    color: Colors.lightGreen,
-                  ),
-                ],
+                children: [IntrayPage(), LogoutPage()],
               ),
               Container(
                   padding: EdgeInsets.only(left: 50),
@@ -100,7 +94,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(50),
                         bottomRight: Radius.circular(50)),
-                    color: Colors.white,
+                    color: redColor,
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -116,11 +110,12 @@ class _MyHomePageState extends State<MyHomePage> {
                     top: 110,
                     left: MediaQuery.of(context).size.width * 0.5 - 85 * 0.5),
                 child: FloatingActionButton(
+                  elevation: 3,
+                  backgroundColor: Colors.grey,
                   child: Icon(
                     Icons.add,
                     size: 50,
                   ),
-                  backgroundColor: redColor,
                   onPressed: () {
                     showDialog(
                         context: context,
@@ -219,19 +214,16 @@ class _MyHomePageState extends State<MyHomePage> {
                   Tab(
                     icon: new Icon(Icons.rss_feed),
                   ),
-                  Tab(
-                    icon: new Icon(Icons.perm_identity),
-                  ),
                 ],
-                labelColor: darkGreyColor,
-                unselectedLabelColor: Colors.blue,
+                labelColor: Colors.lightGreen,
+                unselectedLabelColor: Colors.white,
                 indicatorSize: TabBarIndicatorSize.label,
                 indicatorPadding: EdgeInsets.all(5.0),
                 indicatorColor: Colors.transparent,
               ),
-              backgroundColor: Colors.white,
+              backgroundColor: redColor,
             ),
-            backgroundColor: Colors.brown,
+            backgroundColor: darkGreyColor,
           ),
         ),
       ),

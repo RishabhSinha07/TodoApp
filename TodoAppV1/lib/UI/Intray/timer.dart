@@ -1,3 +1,4 @@
+import 'package:TodoAppV1/models/globals.dart';
 import 'package:flare_flutter/flare_controller.dart';
 import 'package:flare_flutter/flare.dart';
 import 'package:flare_dart/math/mat2d.dart';
@@ -41,13 +42,16 @@ class _timer extends State<timer> with FlareController {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
-    return Scaffold(
-      body: FlareActor("assets/Day-night.flr",
-          fit: BoxFit.cover,
-          alignment: Alignment.center,
-          animation: 'Run',
-          controller: this),
-      // This trailing comma makes auto-formatting nicer for build methods.
+    return Container(
+      child: Stack(
+        children: <Widget>[
+          FlareActor("assets/Day-night.flr",
+              fit: BoxFit.cover,
+              alignment: Alignment.center,
+              animation: 'Run',
+              controller: this),
+        ],
+      ),
     );
   }
 }
